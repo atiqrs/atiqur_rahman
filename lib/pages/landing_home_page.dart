@@ -1,5 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
+import 'package:flutter/cupertino.dart';
+
+import '../widget/daily_deal_card.dart';
 import '../widget/drawer.dart';
 
 class LandingHomePage extends StatefulWidget {
@@ -13,7 +18,11 @@ class _LandingHomePageState extends State<LandingHomePage> {
   final double marginValOfMainConteiner = 8.0;
   final double circularBorderRadiusValOfMainConteiner = 15.0;
   final String username = 'Nicholas';
-  String helloIcon = 'assets/icon/hand.png';
+  static const String helloIconPath = 'assets/icon/hand.png';
+
+  String productName = 'OnePlus 7T Dual Sim 8GB RAM 128GB LTE Frosted Silver';
+  double newPrice = 935.00;
+  double oldPrice = 1020.00;
 
   String getGreetings() {
     int hours = DateTime.now().hour;
@@ -33,22 +42,19 @@ class _LandingHomePageState extends State<LandingHomePage> {
     Size size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
-    return Container(
-      // margin: EdgeInsets.all(marginValOfMainConteiner),
-      // padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
-      // decoration: BoxDecoration(borderRadius: BorderRadius.circular(circularBorderRadiusValOfMainConteiner)),
-      color: Colors.grey[100],
-
+    return SafeArea(
+        child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          // Header
           Padding(
-            padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.05, width * 0.05, height * 0.05),
+            padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.05, width * 0.05, height * 0.04),
             child: Flex(
               direction: Axis.horizontal,
               children: [
                 Image.asset(
-                  'assets/icon/hand.png',
+                  helloIconPath,
                   height: width * 0.12,
                   width: width * 0.12,
                 ),
@@ -79,21 +85,76 @@ class _LandingHomePageState extends State<LandingHomePage> {
               ],
             ),
           ),
+          // Search
           Padding(
               padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.01, width * 0.05, height * 0.01),
-              child: Container(
-                color: Colors.grey[200],
-                child: TextField(),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(
+                    Icons.search_sharp,
+                    color: Colors.grey,
+                  ),
+                  hintText: "Search product you wish...",
+                  hintStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0), borderSide: BorderSide.none),
+                  fillColor: Colors.grey[200],
+                  filled: true,
+                ),
               )),
-          const Text(
-            'You have pushed the button this many times:',
+
+          Padding(
+            padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.04, width * 0.05, height * 0.02),
+            child: Row(children: [
+              Text(
+                'Daily Deals',
+                style: TextStyle(fontSize: width * 0.05, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+              const Spacer(),
+              const Divider(
+                thickness: 3,
+                height: 3,
+                color: Colors.black,
+              )
+            ]),
           ),
-          Text(
-            'Demo Text',
-            style: Theme.of(context).textTheme.headline4,
+
+          // card
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                const SizedBox(width: 20,),
+                DailyDealCart(
+                  circularBorderRadiusValOfMainConteiner: circularBorderRadiusValOfMainConteiner,
+                  image: Image.asset(
+                    'assets/product.jpeg',
+                    height: 180,
+                    width: 200,
+                  ),
+                  newPrice: '937.00',
+                  oldPrice: '1010.00',
+                  productName: productName,
+                  rateValue: '-15%',
+                  upIndexValue: false,
+                ),
+                DailyDealCart(
+                  circularBorderRadiusValOfMainConteiner: circularBorderRadiusValOfMainConteiner,
+                  image: Image.asset(
+                    'assets/product.jpeg',
+                    height: 180,
+                    width: 200,
+                  ),
+                  newPrice: '237.00',
+                  oldPrice: '510.00',
+                  productName: 'Samsung 3I 8GB RAM 128GB LTE Silver',
+                  rateValue: 'Top',
+                  upIndexValue: true,
+                ),
+              ],
+            ),
           ),
         ],
       ),
-    );
+    ));
   }
 }

@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const homeIndex = 0;
   static const cartIndex = 1;
 
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,9 @@ class _MyHomePageState extends State<MyHomePage> {
       //   // implement navigation drawer
       // ),
 
-      body: SafeArea(
-        child: Center(
-          child: IndexedStack(
-            index: _currentIndex,
-            children: const [LandingHomePage(), CartPage()],
-          ),
-        ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: const [LandingHomePage(), CartPage()],
       ),
       floatingActionButton: SizedBox(
         height: height * 0.22,
@@ -50,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Icon(Icons.mic),
         ),
       ),
+      resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         notchMargin: notchMarginVal,

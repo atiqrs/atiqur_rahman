@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'pages/home.dart';
-import 'widget/drawer.dart';
-import 'widget/nav_button.dart';
 
 void main() {
   runApp(const MyApp());
