@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widget/drawer.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -9,12 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -32,17 +31,80 @@ class _MyHomePageState extends State<MyHomePage> {
   final double marginValOfMainConteiner = 8.0;
   final double circularBorderRadiusValOfMainConteiner = 15.0;
 
+  final String username = 'Nicholas';
+  String helloIcon = 'assets/icon/hand.png';
+
+  String getGreetings() {
+    int hours = DateTime.now().hour;
+
+    if (hours < 12) {
+      return "Good Morning";
+    } else if (hours >= 12 && hours <= 17) {
+      return "Good Afternoon";
+    } else if (hours >= 17 && hours <= 24) {
+      return "Good Night";
+    }
+    return "Good Day";
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
     return Scaffold(
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.all(marginValOfMainConteiner),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(circularBorderRadiusValOfMainConteiner)),
-          
+      // appBar: AppBar(
+      //   title:
+      //   // implement navigation drawer
+      // ),
+
+      body: SafeArea(
+        child: Center(
+          // child: Container(
+          // margin: EdgeInsets.all(marginValOfMainConteiner),
+          // padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+          // decoration: BoxDecoration(borderRadius: BorderRadius.circular(circularBorderRadiusValOfMainConteiner)),
+
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.05, width * 0.05, height * 0.05),
+                child: Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Image.asset(
+                      'assets/icon/hand.png',
+                      height: width * 0.12,
+                      width: width * 0.12,
+                    ),
+                    SizedBox(
+                      width: width * 0.02,
+                    ),
+                    Flex(
+                      direction: Axis.vertical,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          getGreetings(),
+                          style: TextStyle(fontSize: width * 0.04, color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          username,
+                          style: TextStyle(fontSize: width * 0.05, color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    // your icon have to import here, for now i just use a normal icon for Drawer
+                    IconButton(
+                        onPressed: () {
+                          debugPrint('Drawer Pressed');
+                        },
+                        icon: const DrawerIcon())
+                  ],
+                ),
+              ),
               const Text(
                 'You have pushed the button this many times:',
               ),
@@ -52,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+          // ),
         ),
       ),
       floatingActionButton: const FloatingActionButton(
