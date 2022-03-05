@@ -1,8 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
-import 'package:flutter/cupertino.dart';
 
 import '../widget/daily_deal_card.dart';
 import '../widget/drawer.dart';
@@ -187,10 +183,7 @@ class _LandingHomePageState extends State<LandingHomePage> {
               ],
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.fromLTRB(width * 0.05, , width * 0.05, height * 0.02),
-          //   child:
-          // ),
+
           SizedBox(
             height: height * 0.02
           )

@@ -13,18 +13,11 @@ class PopulerCategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double height = size.height;
-    double width = size.width;
-
     return Container(
       height: 210,
       width: 300,
       margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
-      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(25))
-                        ),
-                      
+      decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(25))),
       child: Stack(
         children: [
           Image.asset(
@@ -36,7 +29,8 @@ class PopulerCategoryCard extends StatelessWidget {
           Positioned(
             top: 105,
             left: 50,
-            child: Text(productName, textAlign: TextAlign.center, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+            child: Text(productName,
+                textAlign: TextAlign.center, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
           ),
         ],
       ),
