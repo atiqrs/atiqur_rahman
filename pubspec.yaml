@@ -61,6 +61,8 @@ flutter:
   assets:
     - assets/icon/hand.png
     - assets/product.jpeg
+    - assets/populer_cat/apple.jpeg
+    - assets/populer_cat/samsung.jpeg
     
   #   - images/a_dot_ham.jpeg
 

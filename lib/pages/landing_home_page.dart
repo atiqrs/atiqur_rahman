@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../widget/daily_deal_card.dart';
 import '../widget/drawer.dart';
+import '../widget/populer_category_card.dart';
 
 class LandingHomePage extends StatefulWidget {
   const LandingHomePage({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class LandingHomePage extends StatefulWidget {
 class _LandingHomePageState extends State<LandingHomePage> {
   final double marginValOfMainConteiner = 8.0;
   final double circularBorderRadiusValOfMainConteiner = 15.0;
+  final double circularBorderRadiusValOfPopulerConteiner = 25.0;
   final String username = 'Nicholas';
   static const String helloIconPath = 'assets/icon/hand.png';
 
@@ -123,7 +125,9 @@ class _LandingHomePageState extends State<LandingHomePage> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
-                const SizedBox(width: 20,),
+                const SizedBox(
+                  width: 20,
+                ),
                 DailyDealCart(
                   circularBorderRadiusValOfMainConteiner: circularBorderRadiusValOfMainConteiner,
                   image: Image.asset(
@@ -153,6 +157,43 @@ class _LandingHomePageState extends State<LandingHomePage> {
               ],
             ),
           ),
+          
+          Padding(
+            padding: EdgeInsets.fromLTRB(width * 0.05, height * 0.04, width * 0.05, height * 0.02),
+            child: Row(children: [
+              Text(
+                'Populer Categories',
+                style: TextStyle(fontSize: width * 0.05, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ]),
+          ),
+
+          // populer card
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: <Widget>[
+                const SizedBox(
+                  width: 20,
+                ),
+                PopulerCategoryCard(
+                    circularBorderRadiusValOfPopulerConteiner: circularBorderRadiusValOfPopulerConteiner,
+                    image: 'assets/populer_cat/apple.jpeg',
+                    productName: 'Apple'),
+                PopulerCategoryCard(
+                    circularBorderRadiusValOfPopulerConteiner: circularBorderRadiusValOfPopulerConteiner,
+                    image: 'assets/populer_cat/samsung.jpeg',
+                    productName: 'Samsung'),
+              ],
+            ),
+          ),
+          // Padding(
+          //   padding: EdgeInsets.fromLTRB(width * 0.05, , width * 0.05, height * 0.02),
+          //   child:
+          // ),
+          SizedBox(
+            height: height * 0.02
+          )
         ],
       ),
     ));
